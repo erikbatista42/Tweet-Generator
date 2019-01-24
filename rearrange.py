@@ -17,7 +17,7 @@ def rearrangeArguments():
         rearrangedArguments.append(arguments[randomItem])
         arguments.pop(randomItem)
 
-    return rearrangedArguments
+    return " ".join(rearrangedArguments)
 
 
 if __name__ == "__main__":
