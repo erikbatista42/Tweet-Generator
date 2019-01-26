@@ -1,4 +1,3 @@
-
 '''read in the words file'''
 
 
