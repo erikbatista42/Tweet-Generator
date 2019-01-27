@@ -8,12 +8,12 @@ def getRandomWords():
     #turn all words in file into a list
     wordList = file.read().split()
 
-    #get 4 random words from the wordList
+    #take console argument num and get n of random words
     numOfWordsWanted = int(sys.argv[1])
     randWords = random.sample(wordList, numOfWordsWanted)
 
     #return it into a "sentence"
-    return " ".join(randWords)
+    return " ".join(randWords) + "."
 
 
 if __name__ == "__main__":
