@@ -19,7 +19,6 @@ def rearrangeArguments():
 
     return " ".join(rearrangedArguments)
 
-
 if __name__ == "__main__":
     shuffleArgs = rearrangeArguments()
     print(shuffleArgs)
