@@ -8,11 +8,15 @@ def getRandomWords():
     #turn all words in file into a list
     wordList = file.read().split()
 
-    #take console argument num and get n of random words
+    print(wordList)
+
+    file.close()
+
+    #take console argument num and get num of random words
     numOfWordsWanted = int(sys.argv[1])
     randWords = random.sample(wordList, numOfWordsWanted)
 
-    #return it into a "sentence"
+    #return a "sentence"
     return " ".join(randWords) + "."
 
 
