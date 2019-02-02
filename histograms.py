@@ -21,8 +21,7 @@ def frequency(histogram, word):
     #For example, when given the word "mystery" and the Holmes histogram, it will return the integer 20.
 
     # goes into histogram table and gets value
-
-    return histogram
+    return histogram[word]
 
 if __name__ == "__main__":
     file = open("20k.txt", "r")
@@ -31,7 +30,7 @@ if __name__ == "__main__":
 
     uniqueWordsInHistogram = unique_words(histogram)
 
-    frequency = frequency(uniqueWordsInHistogram, "bio")
+    frequency = frequency(histogram, "erik")
 
     print("Histogram: ")
     print(histogram)
