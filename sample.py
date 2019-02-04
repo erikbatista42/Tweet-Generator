@@ -11,30 +11,23 @@ def sample():
 
     return index
 
-def random_index():
-    '''
-    Make the .choice method but words will be chosen based on frequency.
-    So if the word 'fish' appears 3x and 'erik' appears 1x,
-    the program will choose the most *frequent* word. "fish" like 75% of the time
-    '''
+def random_index(histogram):
 
-    # I'm thinking of..
-    # makig a hash table
-    # measure the occurances - histogram
+    values = sum(histogram.values())
+    rand_word = random.randint(0, values -1)
+    counter = 0
 
-    # do if and else statements to choose
+    for key, value in histogram.items():
+        counter += value
 
-    myList = ["erik","erik","erik","mel"]
-    table = {}
-
-    for i in myList:
-        table[i] = table.get(i, 0) + 1
-
-
-    return table
+        if value > rand_word:
+            return counter
+        else:
+            continue
 
 
 if __name__ == "__main__":
     # test = sample()
-    random_index = random_index()
+    histogram = {"erik": 3, "bob": 1,"ben":1}
+    random_index = random_index(histogram)
     print(random_index)

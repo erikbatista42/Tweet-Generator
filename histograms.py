@@ -1,4 +1,4 @@
-def histogram(txt_file):
+def hash_table_histogram(txt_file):
     word_list = txt_file.read().split()
     table = dict()
 
@@ -8,6 +8,12 @@ def histogram(txt_file):
         table[i] = table.get(i, 0) + 1
 
     return table
+
+def list_histogram(txt_file):
+    pass
+
+def tuples_histogram(txt_file):
+    pass
 
 def unique_words(histogram):
     uniques = list()
@@ -25,9 +31,14 @@ def frequency(histogram, word):
 if __name__ == "__main__":
     file = open("20k.txt", "r")
 
-    file_histogram = histogram(file)
-    unique_words_in_histogram = unique_words(file_histogram)
-    frequency = frequency(file_histogram, "bio")
+    table_histogram = hash_table_histogram(file)
+
+    array_histogram = list_histogram(file)
+
+    tuple_histogram = tuples_histogram(file)
+
+    unique_words_in_histogram = unique_words(table_histogram)
+    frequency = frequency(table_histogram, "bio")
 
     file.close()
 
