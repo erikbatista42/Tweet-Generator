@@ -7,27 +7,36 @@ def sample():
     file = open(file_name, "r")
     word_list = file.read().split()
 
-    index = random.choice(word_list)
+    rand_index = random.randint(0, len(word_list) -1)
 
-    return index
+    return word_list[rand_index]
 
-def random_index(histogram):
+def probabilistic_word_sampler(myWords, numRandomSelections):
+    myWordList = myWords.split(' ')
+    lenOfWords = len(myWordList)
+    myWordDict = {}
+    # hash table where key is the word, value is the number of times it appears
+    for word in myWordList:
+        myWordDict[word] = myWordList.count(word)
+    # this is where we get the probabilities
+    # you get the probability by getting the number of times the word appears and dividing
+    # it by the length of the original string
+    for key, val in myWordDict.items():
+        print("{} = {}".format(key,val/lenOfWords))
 
-    values = sum(histogram.values())
-    rand_word = random.randint(0, values -1)
-    counter = 0
 
-    for key, value in histogram.items():
-        counter += value
+    listOfRandomWords = []
+    randomWordDict = {}
+    while numRandomSelections != 0:
+        randomWordList = random.sample(myWordList, 1) # this returns a list
+        randomWord = ''.join(randomWordList)
+        listOfRandomWords.append(randomWord)
+        numRandomSelections -= 1
+    for randomWord in listOfRandomWords:
+        randomWordDict[randomWord] = listOfRandomWords.count(randomWord)
 
-        if value > rand_word:
-            return counter
-        else:
-            continue
-
+    print(randomWordDict)
 
 if __name__ == "__main__":
-    # test = sample()
-    histogram = {"erik": 3, "bob": 1,"ben":1}
-    random_index = random_index(histogram)
-    print(random_index)
+    myWords = "one fish two fish red fish blue fish"
+    probabilistic_word_sampler(myWords, 10000)
