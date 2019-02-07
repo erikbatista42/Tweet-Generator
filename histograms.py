@@ -8,7 +8,6 @@ def table_histogram(given_list):
         # puts the KEY as the word
         # and puts the VALUE as the number of times the key appears
         table[i] = table.get(i, 0) + 1
-
     return table
 
 
@@ -44,9 +43,9 @@ def num_of_unique_word_in(histogram):
         return "num of unique words: {}".format(len(uniques))
 
 
-def frequency(histogram, word):
+def frequency(histogram, given_word):
     # returns the num of times the given word appears in a histogram
-    return histogram[word]
+    return histogram[given_word]
 
 
 if __name__ == "__main__":
