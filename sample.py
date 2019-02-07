@@ -34,13 +34,15 @@ def num_of_times_to_run_probabilities_in(word_list, num_of_random_selections):
 if __name__ == "__main__":
     fish_list = "one fish two fish red fish blue fish".split()
 
-    try: # if file is typed in terminal argument
+    try:
+        '''if file is typed in terminal argument'''
         file_name = sys.argv[1]
         file = open(file_name, "r")
         word_list = file.read().split()
         probability_of_words_in(word_list)
         num_of_times_to_run_probabilities_in(word_list, 10000)
-    except IndexError: # if index out of range, use the fish_list
+    except IndexError:
+        '''if no input is taken, use the fish_list'''
         probability_of_words_in(fish_list)
         num_of_times_to_run_probabilities_in(fish_list, 10000)
 
