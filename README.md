@@ -1,2 +1,2 @@
 # Tweet-Generator 🐦
-*ReadMe Coming soon*
+*Read-Me Coming soon*
