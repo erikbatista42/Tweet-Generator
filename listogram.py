@@ -24,12 +24,16 @@ class Listogram(list):
     def frequency(self, word):
         """Return frequency count of given word, or 0 if word is not found."""
         # TODO: Retrieve word frequency count
+        if self._index(word) is not None:
+            return self[self._index(word)]
+        else:
+            return 0
+
 
     def __contains__(self, word):
         """Return boolean indicating if given word is in this histogram."""
-        # TODO: Check if word is in this histogram
-        index = _index(word)
-        if index == None:
+        # TODO: Check if word is in this histogra
+        if self._index(word) == None:
             return False
         else:
             return True
@@ -39,7 +43,7 @@ class Listogram(list):
         """Return the index of entry containing given target word if found in
         this histogram, or None if target word is not found."""
         # TODO: Implement linear search to find index of entry with target word
-        for index, item in enumarate(self):
+        for index, item in enumerate(self):
             if target in item:
                 return index
             else:
