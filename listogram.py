@@ -28,6 +28,11 @@ class Listogram(list):
     def __contains__(self, word):
         """Return boolean indicating if given word is in this histogram."""
         # TODO: Check if word is in this histogram
+        index = _index(word)
+        if index == None:
+            return False
+        else:
+            return True
 
 
     def _index(self, target):
