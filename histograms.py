@@ -30,7 +30,7 @@ def tuples_histogram(word_list):
             word_index += 1
         else:
             master_list.append((word_list[word_index], word_list.count(word_list[word_index])))
-    return model_tuple
+    return master_list
 
 
 def num_of_unique_word_in(histogram):
@@ -55,20 +55,20 @@ if __name__ == "__main__":
     # file = open("20k.txt", "r")
     # word_list = file.read().split()
 
-    # table_gram = table_histogram(fish_list)
-    # print(table_gram)
+    table_gram = table_histogram(fish_list)
+    print(table_gram)
 
-    # list_gram = list_histogram(fish_list)
-    # print(list_gram)
+    list_gram = list_histogram(fish_list)
+    print(list_gram)
 
     tuple_gram = tuples_histogram(fish_list)
     print(tuple_gram)
 
-    # uniques_in_gram = num_of_unique_word_in(table_gram)
-    # print(uniques_in_gram)
+    uniques_in_gram = num_of_unique_word_in(table_gram)
+    print(uniques_in_gram)
 
-    # frequency_of_word_in_table = frequency(table_gram, "fish")
-    # print(frequency_of_word_in_table)
+    frequency_of_word_in_table = frequency(table_gram, "fish")
+    print(frequency_of_word_in_table)
 
     # file.close()
 
