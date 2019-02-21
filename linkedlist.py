@@ -66,7 +66,15 @@ class LinkedList(object):
 
         new_node = Node(item)
         self.head = new_node
-        # self.items += new_node
+        if self.tail == None:
+            self.tail = new_node
+
+        current = new_node.next
+        while current != None:
+            current = current.next
+        current.next = Node(item)
+        # self.items.append(new_node)
+        print('k')
 
 
 
