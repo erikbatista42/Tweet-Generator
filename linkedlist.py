@@ -50,17 +50,17 @@ class LinkedList(object):
 
     def is_empty(self):
         """Return a boolean indicating whether this linked list is empty."""
-        return self.head is None
+        return self.head is None # O(1) because it's only doing one thing
 
     def length(self):
         """Return the length of this linked list by traversing its nodes.
-        TODO: Running time: O(???) Why and under what conditions?"""
+        TODO: Running time: O(n) Because we have to iterate through all things. specifically through all the nodes."""
         # TODO: Loop through all nodes and count one for each
         return len(self.items())
 
     def append(self, item):
         """Insert the given item at the tail of this linked list.
-        TODO: Running time: O(???) Why and under what conditions?"""
+        TODO: Running time: O(1) because we only change the tail (last node)"""
         # TODO: Create new node to hold given item
         # TODO: Append node after tail, if it exists
 
@@ -74,7 +74,7 @@ class LinkedList(object):
 
     def prepend(self, item):
         """Insert the given item at the head of this linked list.
-        TODO: Running time: O(???) Why and under what conditions?"""
+        TODO: Running time: O(1) - becuase we just check through the first node and and never loops through all nodes"""
         # TODO: Create new node to hold given item
         # TODO: Prepend node before head, if it exists
         new_node = Node(item)
