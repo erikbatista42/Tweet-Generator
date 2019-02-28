@@ -42,7 +42,7 @@ class HashTable(object):
 
     def items(self):
         """Return a list of all items (key-value pairs) in this hash table.
-        TODO: Running time: O(???) Why and under what conditions?"""
+        TODO: Running time: O(n) Why and under what conditions?"""
         # Collect all pairs of key-value entries in each bucket
         all_items = []
         for bucket in self.buckets:
@@ -51,9 +51,14 @@ class HashTable(object):
 
     def length(self):
         """Return the number of key-value entries by traversing its buckets.
-        TODO: Running time: O(???) Why and under what conditions?"""
+        TODO: Running time: O(n) Why and under what conditions?"""
+        count = 0
         # TODO: Loop through all buckets
-        # TODO: Count number of key-value entries in each bucket
+        for bucket in self.buckets:
+            # TODO: Count number of key-value entries in each bucket
+            count += bucket.length()
+        return count
+
 
     def contains(self, key):
         """Return True if this hash table contains the given key, or False.
@@ -76,11 +81,22 @@ class HashTable(object):
         """Return the value associated with the given key, or raise KeyError.
         TODO: Running time: O(???) Why and under what conditions?"""
         # TODO: Find bucket where given key belongs
-        bucket = self.buckets[self._bucket_index(key)]
-        # TODO: Check if key-value entry exists in bucket
-        entry = bucket.find(lambda key_value: key_value[0] == key)
-        # TODO: If found, return value associated with given key
-        if entry is not None: # found it
+
+
+        # Check if key-value entry exists in bucket
+        index = self._bucket_index(key) # 0(1) to calculate index
+        bucket = self.buckets[index] # 0(1) to index an array
+
+        def key_matcher(key_value):
+            return (key_value[0] == key)
+
+
+        # entry = bucket.find(lambda key_value: key_value[0] == key)
+
+        # If found, return value associated with given key
+        entry = bucket.find(key_matcher) # O(1) with l = bucket.length()
+
+        if entry is not None: # found
             return entry[1] # get the value only at index 1
         # TODO: Otherwise, raise error to tell user get failed
         else:
@@ -88,15 +104,18 @@ class HashTable(object):
 
     def set(self, key, value):
         """Insert or update the given key with its associated value.
-        TODO: Running time: O(???) Why and under what conditions?"""
+        TODO: Running time: O(l) Why and under what conditions? Best case O(1) item is located near head of list. Otherwise O(l) (find) + O(l) (delete) = O(2*l) simplifies to O(l) if item is near tail of list"""
         # Find bucket where given key belongs
-        index = self._bucket_index(key)
-        bucket = self.buckets[index]
+        index = self._bucket_index(key) # O(1)
+        bucket = self.buckets[index] # O(1)
         # TODO: Check if key-value entry exists in bucket
+        entry = bucket.find(lambda key_value: key_value[0] == key) # O(1)
         # TODO: If found, update value associated with given key
+        if entry is not None:
+            bucket.delete(entry) # O(l) worst case
         # TODO: Otherwise, insert given key-value entry into bucket
-        entry = (key, value)
-        bucket.append(entry)
+        entry = (key, value) # O(1)
+        bucket.append(entry) # O(1)
 
     def delete(self, key):
         """Delete the given key from this hash table, or raise KeyError.
