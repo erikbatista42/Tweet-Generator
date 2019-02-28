@@ -116,13 +116,13 @@ class LinkedList(object):
             current_node = None
             return
 
-        # if self.tail.data == item:
-        #     while current_node is not self.tail:
-        #         current_node = current_node.next
-        #         if current_node.next.data == self.tail.data:
-        #             previous_node = current_node
-        #             self.tail = previous_node
-        #             previous_node.next = None
+        if self.tail.data == item:
+            while current_node is not self.tail:
+                current_node = current_node.next
+                if current_node.next.data == self.tail.data:
+                    previous_node = current_node
+                    self.tail = previous_node
+                    previous_node.next = None
 
         # pre_node.next = curre_node.next
 
