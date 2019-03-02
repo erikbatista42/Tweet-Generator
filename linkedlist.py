@@ -102,46 +102,82 @@ class LinkedList(object):
         """Delete the given item from this linked list, or raise ValueError.
         TODO: Best case running time: O(???) Why and under what conditions?
         TODO: Worst case running time: O(???) Why and under what conditions?"""
-
+        found = False
         current_node = self.head
         previous_node = None
 
+        # if self.head == item and self.length() == 1:
+        #     self.head = None
+        #     self.tail = None
+        #     found = True
 
-        if self.head == item and self.length() == 1:
-            self.head = None
-            self.tail = None
-        # if the head is the node we want to delete
-        if current_node and current_node.data == item:
-            self.head = current_node.next
-            current_node = None
-            return
 
-        if self.tail.data == item:
-            while current_node is not self.tail:
-                current_node = current_node.next
-                if current_node.next.data == self.tail.data:
-                    previous_node = current_node
-                    self.tail = previous_node
-                    previous_node.next = None
+        # # if the head is the node we want to delete
+        # if current_node and current_node.data == item:
+        #     self.head = current_node.next
+        #     current_node = None
+        #     found = True
+        #     return
 
-        # pre_node.next = curre_node.next
+        # # if the tail is the node we want to delete
+        # if self.tail.data == item:
+        #     while current_node is not None:
+        #         print("*********************************************************")
+        #         current_node = current_node.next
+        #         if current_node.next == self.tail:
 
-        # while current_node and current_node.data not None
+        #             # previous_node.next = None
+        #             self.tail = current_node
+        #             current_node.next = None
+        #             print("sadfsd")
+        #             print(self.tail)
+        #             # current_node.next = None
+        #             # previous_node = None
+        #             # return
+        #             found = True
+        #         else:
+        #             raise ValueError('Item not found: {}'.format(item))
 
-        # if current_node != None:
-
-        # TODO: Loop through all nodes to find one whose data matches given item
-        # while current_node is not None:
+        # # if the middle node is the node we want to delete / linked list is long and we want to delete a node-0
+        # while current_node is not self.tail:
         #     if current_node.data == item:
 
-        #     # TODO: Update previous node to skip around node with matching data
+        #         # remove curr node from the list
+        #         previous_node.next = current_node.next
+        #         # current_node.next = None
+        #         current_node.next = None
+        #         found = True
+        #         return
         #     else:
-        #         # Otherwise raise error to tell user that delete has failed
-        #         raise ValueError('Item not found: {}'.format(item))
+        #         previous_node = current_node
+        #         current_node = current_node.next
+        # found = False
+        # if found == False
+        #     raise ValueError('Item not found: {}'.format(item))
 
-
-
-
+        ####
+        while current_node and not found:
+            if current_node.data == item and current_node is self.head:
+                if self.head.next is None: # if want to delete the head and is the only node
+                    self.head = None
+                    self.tail = None
+                    found = True
+                else:
+                    found = True
+                    self.head = current_node.next
+            elif current_node.data == item:
+                if current_node == self.tail:
+                    found = True
+                    previous_node.next = None
+                    self.tail = previous_node
+                else:
+                    found = True
+                    previous_node.next = current_node.next
+            else:
+                previous_node = current_node
+                current_node = current_node.next
+        if not found:
+            raise ValueError('Item not found: {}'.format(item))
 
 def test_linked_list():
     ll = LinkedList()
@@ -158,13 +194,14 @@ def test_linked_list():
     print('length: {}'.format(ll.length()))
 
     # Enable this after implementing delete method
-    delete_implemented = False
+    delete_implemented = True
     if delete_implemented:
         print('\nTesting delete:')
         for item in ['B', 'C', 'A']:
             print('delete({!r})'.format(item))
+            print('list before delete: {}'.format(ll))
             ll.delete(item)
-            print('list: {}'.format(ll))
+            print('list after delete: {}'.format(ll))
 
         print('head: {}'.format(ll.head))
         print('tail: {}'.format(ll.tail))
