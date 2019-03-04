@@ -54,15 +54,15 @@ class LinkedList(object):
 
     def length(self):
         """Return the length of this linked list by traversing its nodes.
-        TODO: Running time: O(n) Because we have to iterate through all things. specifically through all the nodes."""
-        # TODO: Loop through all nodes and count one for each
+        Running time: O(n) Because we have to iterate through all things. specifically through all the nodes."""
+        # Loop through all nodes and count one for each
         return len(self.items())
 
     def append(self, item):
         """Insert the given item at the tail of this linked list.
-        TODO: Running time: O(1) because we only change the tail (last node)"""
-        # TODO: Create new node to hold given item
-        # TODO: Append node after tail, if it exists
+        Running time: O(1) because we only change the tail (last node)"""
+        # Create new node to hold given item
+        # Append node after tail, if it exists
 
         new_node = Node(item)
         if self.head == None:
@@ -74,10 +74,10 @@ class LinkedList(object):
 
     def prepend(self, item):
         """Insert the given item at the head of this linked list.
-        TODO: Running time: O(1) - becuase we just check through the first node and and never loops through all nodes"""
-        # TODO: Create new node to hold given item
-        # TODO: Prepend node before head, if it exists
+        Running time: O(1) - becuase we just check through the first node and and never loops through all nodes"""
+        # Create new node to hold given item
         new_node = Node(item)
+        # Prepend node before head, if it exists
         if self.head == None:
             self.head = new_node
             self.tail = new_node
@@ -89,10 +89,10 @@ class LinkedList(object):
         """Return an item from this linked list satisfying the given quality.
         Best case running time: O(1) if items is near the head of the list
         Worst case running time: O(n) if item is near the tail of the list or not present and we need to loop through all n nodes in the list."""
-        # TODO: Loop through all nodes to find item where quality(item) is True
-        # TODO: Check if node's data satisfies given quality function
         node = self.head
+        # Loop through all nodes to find item where quality(item) is True
         while node is not None:
+            # Check if node's data satisfies given quality function
             if quality(node.data):
                 return node.data
             node = node.next
@@ -100,8 +100,8 @@ class LinkedList(object):
 
     def delete(self, item):
         """Delete the given item from this linked list, or raise ValueError.
-        TODO: Best case running time: O(1) If it's near the head
-        TODO: Worst case running time: O(n) If the node is at the end will have to traverse the whole list"""
+        Best case running time: O(1) If it's near the head
+        Worst case running time: O(n) If the node is at the end will have to traverse the whole list"""
         found = False
         current_node = self.head
         previous_node = None
