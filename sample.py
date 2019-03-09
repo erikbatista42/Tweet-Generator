@@ -1,10 +1,11 @@
 import sys
 import random
+import re
+from histograms import table_histogram
 
 def choose_random_word_from(word_list):
     rand_index = random.randint(0, len(word_list) -1)
     return word_list[rand_index]
-
 
 def probability_of_words_in(word_list):
     lenOfWords = len(word_list)
@@ -16,6 +17,18 @@ def probability_of_words_in(word_list):
     for key, val in myWordDict.items():
         print("{} = {}".format(key,val/lenOfWords))
 
+def get_one_word_probability(histogram):
+    # shoutout to Ramon for helping me build this little method
+    total = 0
+    increasing_probability = 0
+
+    for key, value in histogram.items():
+        total += value
+    random_num = random.uniform(0,1)
+    for key, value in histogram.items():
+        increasing_probability += value / total
+        if increasing_probability >= random_num:
+            return key
 
 def num_of_times_to_run_probabilities_in(word_list, num_of_random_selections):
     random_words_list = []
@@ -34,17 +47,22 @@ def num_of_times_to_run_probabilities_in(word_list, num_of_random_selections):
 if __name__ == "__main__":
     fish_list = "one fish two fish red fish blue fish".split()
 
+    fish_histo = table_histogram(fish_list)
+    # print(fish_histo)
+    samp = sample(fish_histo)
+    print(samp)
     try:
         '''if file is typed in terminal argument'''
         file_name = sys.argv[1]
         file = open(file_name, "r")
         word_list = file.read().split()
         probability_of_words_in(word_list)
-        num_of_times_to_run_probabilities_in(word_list, 10000)
+
+        # num_of_times_to_run_probabilities_in(word_list, 10000)
     except IndexError:
         '''if no input is taken, use the fish_list'''
         probability_of_words_in(fish_list)
-        num_of_times_to_run_probabilities_in(fish_list, 10000)
+        # num_of_times_to_run_probabilities_in(fish_list, 10000)
 
 
 

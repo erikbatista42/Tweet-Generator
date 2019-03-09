@@ -1,5 +1,7 @@
 import random
 import sys
+import re
+
 
 def table_histogram(given_list):
     table = dict()
@@ -9,7 +11,6 @@ def table_histogram(given_list):
         # and puts the VALUE as the number of times the key appears
         table[i] = table.get(i, 0) + 1
     return table
-
 
 def list_histogram(word_list):
     master_list = []
@@ -52,23 +53,28 @@ if __name__ == "__main__":
 
     fish_list = "one fish two fish red fish blue fish".split()
 
-    # file = open("20k.txt", "r")
-    # word_list = file.read().split()
+    file = open("20k.txt", "r")
+    word_list = file.read().split()
 
+# here
     table_gram = table_histogram(fish_list)
     print(table_gram)
 
-    list_gram = list_histogram(fish_list)
-    print(list_gram)
+    # list_gram = list_histogram(fish_list)
+    # print(list_gram)
 
-    tuple_gram = tuples_histogram(fish_list)
-    print(tuple_gram)
+    # tuple_gram = tuples_histogram(fish_list)
+    # print(tuple_gram)
 
-    uniques_in_gram = num_of_unique_word_in(table_gram)
-    print(uniques_in_gram)
+    # uniques_in_gram = num_of_unique_word_in(table_gram)
+    # print(uniques_in_gram)
 
-    frequency_of_word_in_table = frequency(table_gram, "fish")
-    print(frequency_of_word_in_table)
+    # frequency_of_word_in_table = frequency(table_gram, "fish")
+    # print(frequency_of_word_in_table)
+# here
+
+    l = make_word_list("peterPan.txt")
+    print(l)
 
     # file.close()
 
