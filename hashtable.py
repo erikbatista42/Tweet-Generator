@@ -59,11 +59,11 @@ class HashTable(object):
         Running time: O(n) Why and under what conditions?"""
         count = 0
         # Loop through all buckets
-        for bucket in self.buckets:
+        for bucket in self.buckets: # b iterations
             # Count number of key-value entries in each bucket
-            count += bucket.length()
+            count += bucket.length() # O(l)
         return count
-
+        # Overall O(b + l) --> O(n)
 
     def contains(self, key):
         """Return True if this hash table contains the given key, or False.
